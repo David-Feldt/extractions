@@ -1,0 +1,18 @@
+{
+    "name": "Extractions Coffee Blog",
+    "platforms": [
+        "Web"
+    ],
+    "content": "README.md",
+    "tabs": [
+        {
+            "title": "Codelab",
+            "href": "https://codelabs.developers.google.com/codelabs/firestore-web"
+        }
+    ],
+    "related": [
+        "firebase/quickstart-js",
+        "firebase/friendlyeats-ios",
+        "firebase/friendlyeats-android"
+    ]
+}
