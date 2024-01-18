@@ -37,6 +37,7 @@
         "importScripts": true,
         "Extractions": true,
         "firebase": true,
-        "Promise": true
+        "Promise": true,
+        "@google-cloud/storage": true
     }
 }

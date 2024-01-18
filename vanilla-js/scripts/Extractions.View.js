@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 'use strict';
+// Create a reference with an initial file path and name
 
 Extractions.prototype.initTemplates = function() {
   this.templates = {};
@@ -452,12 +453,23 @@ Extractions.prototype.render = function(el, data) {
       var chunks = tel.getAttribute('data-fir-style').split(':');
       var attr = chunks[0];
       var field = chunks[1];
+      console.log(attr);
+      console.log(field);
       var value = that.getDeepItem(data, field);
-
+      console.log("this is value", value)
+      const pathReference = firebase.storage().ref(value);
+      console.log("this is patth reference", pathReference);
       if (attr.toLowerCase() === 'backgroundimage') {
-        value = 'url(' + value + ')';
+        pathReference.getDownloadURL().then(function(url) {
+          value = 'url(' + url + ')';
+          console.log("this is value", value)
+          tel.style[attr] = value;
+        }).catch(function(error) {
+          console.log(error);
+        });
       }
       tel.style[attr] = value;
+      console.log("this is tel", value)
     }
   };
 

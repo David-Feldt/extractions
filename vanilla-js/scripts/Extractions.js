@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable indent */
 /**
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
@@ -14,6 +16,7 @@
  * limitations under the License.
  */
 'use strict';
+console.log('Extractions.js loaded');
 
 /**
  * Initializes the Extractions app.
