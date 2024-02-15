@@ -60,14 +60,19 @@
   <div class="dialogs"></div>
 
   <div hidden class="template" id="header-base">
-      <header id="site-header" class="mdc-toolbar mdc-toolbar--fixed">
-        <div id="title" class="mdc-toolbar__row mdc-layout-grid">
+      <header id="site-header" class="mdc-toolbar mdc-toolbar--fixed waterloo">
+        <h1 class="myTitle">Kitchener / Waterloo</h1>
+
+        <!-- <div id="title" class="mdc-toolbar__row mdc-layout-grid">
+
           <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-            <span class="material-icons mdc-toolbar__icon--menu">LOGO</span>
+            <span class="material-icons mdc-toolbar__icon--menu">BUM</span>
             <span class="mdc-toolbar__title">Extractions</span>
           </section>
+        </div> -->
+        <div id="section-header" data-fir-if="hasSectionHeader">
+
         </div>
-        <div id="section-header" data-fir-if="hasSectionHeader"></div>
       </header>
   </div>
 
@@ -364,3 +369,91 @@
 <script src="/scripts/Extractions.Data.js"></script>
 </body>
 </html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Stack Card</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100vw;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .tags {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .tag {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="image">
+                <img src="path/to/image.jpg" alt="Image">
+            </div>
+            <div class="content">
+                <h2>Title</h2>
+                <p>Location</p>
+                <p>Scale</p>
+            </div>
+            <div class="tags">
+                <div class="tag">Tag 1</div>
+                <div class="tag">Tag 2</div>
+                <div class="tag">Tag 3</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->

@@ -14,7 +14,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */ 
  html,
  body {
    font-family: 'Roboto', 'Helvetica', sans-serif;
@@ -52,7 +52,10 @@
  
  .back {float: left;}
  
- #site-header, #filter {background-color: #3367D6;}
+ #site-header, #filter {background-color: #4d8859;
+  background-image: url('../images/Downtown-Kitchener-Cityscape-thumbnail.jpg');
+  background-size: cover; 
+  background-position: center;}
  
  #generic-header button {color: black;}
 
@@ -320,6 +323,12 @@
    color: white;
    text-decoration: none;
  }
+
+ #site-header .waterloo {
+    background-image: url('../images/Downtown-Kitchener-Cityscape-thumbnail.jpg');
+    background-size: cover; 
+    background-position: center;
+ }
  
  #site-header .mdc-toolbar__icon--menu {
    font-size: 26px;
@@ -338,7 +347,19 @@
    padding: 10px 0px 0px 0px;
    margin: 0px;
  }
- 
+
+ #site-header .myTitle {
+  align-self: center;
+ /* position: relative; */
+  padding: 30px; 
+  text-shadow:0 0 20px rgba(0, 0, 0, 0.5);
+  font-size: 3em;
+}
+
+.mdc-toolbar-fixed-adjust {
+  padding-top: 280px;
+}
+
  #site-header #title {
    padding-bottom: 0px;
    padding-top: 0px;
