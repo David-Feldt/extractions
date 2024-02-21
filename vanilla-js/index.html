@@ -12,6 +12,7 @@
   limitations under the License
 -->
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,24 +43,26 @@
   <meta name="msapplication-navbutton-color" content="#303F9F"> -->
 
   <!-- Material Design Components -->
-  <link rel="stylesheet"
-  href="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.min.css" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.min.css"
+    type="text/css">
   <script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
 
   <!-- App Styling -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="/styles/main.css" type="text/css">
 </head>
+
 <body>
-<div>
-  <div class="header"></div>
+  <div>
+    <div class="header"></div>
 
-  <main></main>
+    <main></main>
 
-  <div class="dialogs"></div>
+    <div class="dialogs"></div>
 
-  <div hidden class="template" id="header-base">
+    <div hidden class="template" id="header-base">
       <header id="site-header" class="mdc-toolbar mdc-toolbar--fixed waterloo">
         <h1 class="myTitle">Kitchener / Waterloo</h1>
 
@@ -74,36 +77,43 @@
 
         </div>
       </header>
-  </div>
+    </div>
 
-  <div hidden class="template" id="main-adjusted">
+    <!-- Old code -->
+    <!-- <div hidden class="template" id="main-adjusted">
     <div id="message-cards-container" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
       <div id="cards" class="mdc-layout-grid__inner"></div>
     </div>
-  </div>
+  </div> -->
 
-  <div hidden class="template" id="main">
-    <div id="message-cards-container" class="mdc-layout-grid">
-      <div id="cards" class="mdc-layout-grid__inner"></div>
-    </div>
-  </div>
-
-  <div hidden class="template" id="no-shops">
-    <div id="guy-container" class="mdc-toolbar-fixed-adjust">
-      <img class="guy" src="/images/guy_fireats.png" />
-      <div class="text">
-        This app is connected to the Firebase project "<b data-fir-content="projectId"></b>".<br />
-        <br />
-        Your Cloud Firestore has no documents in <b>/shops/</b>.
+    <div hidden class="template" id="main-adjusted">
+      <div id="message-cards-container" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
+        <div id="cards" class="card-container-custom"></div>
       </div>
-      <br />
-      <a class="mdc-button" id="add_mock_data">
-        Add mock data
-      </a>
     </div>
-  </div>
 
-  <div hidden class="template" id="no-ratings">
+    <div hidden class="template" id="main">
+      <div id="message-cards-container" class="mdc-layout-grid">
+        <div id="cards" class="mdc-layout-grid__inner"></div>
+      </div>
+    </div>
+
+    <div hidden class="template" id="no-shops">
+      <div id="guy-container" class="mdc-toolbar-fixed-adjust">
+        <img class="guy" src="/images/guy_fireats.png" />
+        <div class="text">
+          This app is connected to the Firebase project "<b data-fir-content="projectId"></b>".<br />
+          <br />
+          Your Cloud Firestore has no documents in <b>/shops/</b>.
+        </div>
+        <br />
+        <a class="mdc-button" id="add_mock_data">
+          Add mock data
+        </a>
+      </div>
+    </div>
+
+    <div hidden class="template" id="no-ratings">
       <div id="guy-container" class="mdc-toolbar-fixed-adjust">
         <img class="guy" src="/images/guy_fireats.png" />
         <div class="text">
@@ -116,60 +126,67 @@
       </div>
     </div>
 
-  <div hidden class="template" id="no-results">
-    <div id="guy-container" class="mdc-toolbar-fixed-adjust">
-      <img class="guy" src="/images/guy_fireats.png" />
-      <div class="text">
-        There are no results for your those filters!
-      </div>
-    </div>
-  </div>
-
-  <div hidden class="template" id="filter-display">
-    <div id="filter" class="mdc-toolbar mdc-layout-grid">
-      <div id="show-filters" >
-        <div id="active-filters">
-          <i class="material-icons">filter_list</i>
-          You're seeing <b data-fir-content="filter_description"></b>
+    <div hidden class="template" id="no-results">
+      <div id="guy-container" class="mdc-toolbar-fixed-adjust">
+        <img class="guy" src="/images/guy_fireats.png" />
+        <div class="text">
+          There are no results for your those filters!
         </div>
       </div>
     </div>
-  </div>
 
-  <div hidden class="template" id="shop-header">
-    <header class="mdc-layout__header mdc-layout__header--transparent" data-fir-style="backgroundImage:photo">
-
-      <div class="mdc-layout-grid" style="width: 100%;">
-          <div class="mdc-layout-grid__inner">
-              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                  <a href="/" data-navigo class="material-icons" id="close">close</a>
-              </div>
-              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 info">
-                <div class="max_width_600">
-                  <h2 data-fir-content="name"></h2>
-                  <span class="price"></span>
-                  <div class="rating"></div>
-                  <div class="details">
-                    <span class="rating"></span>
-                    <span data-fir-content="category"></span>
-                    <span class="light">●</span>
-                    <span data-fir-content="city"></span>
-                  </div>
-                  <button id="show-add-review" data-fir-click="show_add_review" class="mdc-button fab">
-                      <i class="material-icons">add</i>
-                    </button>
-                </div>
-              </div>
+    <div hidden class="template" id="filter-display">
+      <div id="filter" class="mdc-toolbar mdc-layout-grid">
+        <div id="show-filters">
+          <div id="active-filters">
+            <i class="material-icons">filter_list</i>
+            You're seeing <b data-fir-content="filter_description"></b>
           </div>
         </div>
-    </header>
-  </div>
+      </div>
+    </div>
 
-  <div hidden class="template" id="rating"></div>
-  <span hidden class="template" id="price"></span>
+    <div hidden class="template" id="shop-header">
+      <header class="mdc-layout__header mdc-layout__header--transparent" data-fir-style="backgroundImage:photo">
 
-  <div hidden class="template mdc-layout-grid__cell--span-12" id="review-card">
-    <div class="review max_width_600">
+        <div class="mdc-layout-grid" style="width: 100%;">
+          <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+              <a href="/" data-navigo class="material-icons" id="close">close</a>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 info">
+              <div class="max_width_600">
+                <h1 data-fir-content="name"></h1>
+                <!-- <span class="price"></span> -->
+                <!-- <div class="rating"></div> -->
+                <!-- <div class="details"> -->
+                  <!-- <span class="rating"></span> -->
+                  <!-- <span data-fir-content="category"></span> -->
+                  <!-- <span class="light">●</span> -->
+                  <!-- <span data-fir-content="city"></span> -->
+                <!-- </div> -->
+                <!-- <button id="show-add-review" data-fir-click="show_add_review" class="mdc-button fab">
+                  <i class="material-icons">add</i>
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div hidden class="template" id="shop-body">
+      <p>
+        This is where I put all written review :D
+      </p>
+    </div>
+
+    <div hidden class="template" id="rating"></div>
+    <div hidden class="template tags-custom" id="tag"></div>
+    <span hidden class="template" id="price"></span>
+
+    <div hidden class="template mdc-layout-grid__cell--span-12" id="review-card">
+      <div class="review max_width_600">
         <div class="header">
           <div class="author">
             <span class="light" data-fir-content="userName"></span>
@@ -177,33 +194,81 @@
           <div class="rating"></div>
         </div>
         <div data-fir-content="text"></div>
-    </div>
-  </div>
-
-  <div hidden class="template mdc-layout-grid__cell mdc-layout-grid__cell--span-4" id="shop-card">
-    <div class="location-card mdc-card mdc-shadow--2dp" data-fir-click="go_to_shop">
-      <div class="mdc-card__title" data-fir-style="backgroundImage:photo"></div>
-      <div class="mdc-card__supporting-text">
-        <h2 data-fir-content="name">...</h2>
-        <span class="info price"></span>
-        <div class="details">
-          <div class="rating"></div>
-        </div>
-        <div class="details">
-          <span class="info" data-fir-content="category"></span>
-          <span class="light">●</span>
-          <span class="info" data-fir-content="city"></span>
-        </div>
-
       </div>
     </div>
-  </div>
+
+
+    <!-- Old code -->
+    <!-- <div hidden class="template mdc-layout-grid__cell mdc-layout-grid__cell--span-4" id="shop-card">
+      <div class="location-card mdc-card mdc-shadow--2dp" data-fir-click="go_to_shop">
+        <div class="mdc-card__title" data-fir-style="backgroundImage:photo"></div>
+        <div class="mdc-card__supporting-text">
+          <h2 data-fir-content="name">...</h2>
+          <span class="info price"></span>
+          <div class="details">
+            <div class="rating"></div>
+          </div>
+          <div class="details">
+            <span class="info" data-fir-content="category"></span>
+            <span class="light">●</span>
+            <span class="info" data-fir-content="city"></span>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+
+    <!-- <div hidden class="template card-custom" id="shop-card">
+      <div class="location-card mdc-card mdc-shadow--2dp" data-fir-click="go_to_shop">
+        <div class="image-custom-test" data-fir-style="backgroundImage:photo"></div> 
+        <div class="mdc-card__supporting-text">
+          <h2 data-fir-content="name">...</h2>
+          <span class="info price"></span>
+          <div class="details">
+            <div class="rating"></div>
+          </div>
+          <div class="details">
+            <span class="info" data-fir-content="category"></span>
+            <span class="light">●</span>
+            <span class="info" data-fir-content="city"></span>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+ 
+    <div hidden class="template" id="shop-card">
+      <div class="location-card card-custom" data-fir-click="go_to_shop">
+        <div class="image-custom" data-fir-style="backgroundImage:photo">
+          <img src="path/to/image.jpg" alt="Image">
+        </div>
+        <div class="content-custom">
+          <h2 data-fir-content="name"></h2>
+          <!-- <span class="info price"></span> -->
+          <div class="details">
+            <!-- <div class="rating"></div> -->
+          </div>
+          
+          <span style="display: inline">Rating: <span data-fir-content="overall rating"></span>/10</span>
+          <br>
+          <span style="display: inline">Location: <span data-fir-content="address"></span></span>
+        </div>
+        <div class="tags-custom">
+          <div class="tag-custom" data-fir-foreach="Tags" data-fir-content="~"></div>
+          <!-- <div class="tag-custom">Tag 1</div>
+          <div class="tag-custom">Tag 2</div>
+          <div class="tag-custom">Tag 3</div> -->
+        </div>
+      </div>
+    </div>
 
   <i hidden class="template material-icons" id="star-border-icon">star_border</i>
   <i hidden class="template material-icons" id="star-icon">star</i>
 
   <ul hidden class="template mdc-list" id="item-list">
-      <li class="mdc-list-item" data-mdc-auto-init="MDCRipple" data-fir-foreach="items" data-fir-content="~"></li>
+    <li class="mdc-list-item" data-mdc-auto-init="MDCRipple" data-fir-foreach="items" data-fir-content="~"></li>
   </ul>
 
   <ul hidden class="template mdc-list" id="all-filters-list">
@@ -241,7 +306,8 @@
           <div id="all-filters-list"></div>
         </section>
         <footer class="mdc-dialog__footer">
-          <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Accept</button>
+          <button type="button"
+            class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Accept</button>
         </footer>
       </div>
       <div class="page" id="page-category">
@@ -273,31 +339,31 @@
         </footer>
       </div>
       <div class="page" id="page-price">
-          <header class="mdc-dialog__header">
-            <i class="material-icons">monetization_on</i>
-            <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
-              Price
-            </h2>
-          </header>
-          <section class="mdc-dialog__body mdc-dialog__body--scrollable">
-            <ul class="mdc-list">
-              <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
-                Any
-              </li>
-              <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
-                $
-              </li>
-              <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
-                $$
-              </li>
-              <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
-                $$$
-              </li>
-              <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
-                $$$$
-              </li>
-            </ul>
-          </section>
+        <header class="mdc-dialog__header">
+          <i class="material-icons">monetization_on</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Price
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              $
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              $$
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              $$$
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              $$$$
+            </li>
+          </ul>
+        </section>
         <footer class="mdc-dialog__footer">
           <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
         </footer>
@@ -327,8 +393,7 @@
     <div class="mdc-dialog__backdrop"></div>
   </aside>
 
-  <aside id="dialog-add-review"
-    class="mdc-dialog">
+  <aside id="dialog-add-review" class="mdc-dialog">
     <div class="mdc-dialog__surface">
       <header class="mdc-dialog__header">
         <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
@@ -336,38 +401,41 @@
         </h2>
       </header>
       <section class="mdc-dialog__body">
-          <div class="star-input">
-            <i class="material-icons">star_border</i>
-            <i class="material-icons">star_border</i>
-            <i class="material-icons">star_border</i>
-            <i class="material-icons">star_border</i>
-            <i class="material-icons">star_border</i>
-          </div>
-          <textarea id="text"></textarea>
+        <div class="star-input">
+          <i class="material-icons">star_border</i>
+          <i class="material-icons">star_border</i>
+          <i class="material-icons">star_border</i>
+          <i class="material-icons">star_border</i>
+          <i class="material-icons">star_border</i>
+        </div>
+        <textarea id="text"></textarea>
       </section>
       <footer class="mdc-dialog__footer">
-        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
-        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Save</button>
+        <button type="button"
+          class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
+        <button type="button"
+          class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Save</button>
       </footer>
     </div>
     <div class="mdc-dialog__backdrop"></div>
   </aside>
-</div>
+  </div>
 
-<script src="/__/firebase/9.22.1/firebase-app-compat.js"></script>
-<script src="/__/firebase/9.22.1/firebase-auth-compat.js"></script>
-<script src="/__/firebase/9.22.1/firebase-firestore-compat.js"></script>
-<script src="/__/firebase/9.22.1/firebase-app-check-compat.js"></script>
-<script src="/__/firebase/9.22.1/firebase-storage-compat.js"></script>
-<script src="/__/firebase/init.js"></script>
+  <script src="/__/firebase/9.22.1/firebase-app-compat.js"></script>
+  <script src="/__/firebase/9.22.1/firebase-auth-compat.js"></script>
+  <script src="/__/firebase/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="/__/firebase/9.22.1/firebase-app-check-compat.js"></script>
+  <script src="/__/firebase/9.22.1/firebase-storage-compat.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
-<script src="//unpkg.com/navigo@6"></script>
+  <script src="//unpkg.com/navigo@6"></script>
 
-<script src="/scripts/Extractions.js"></script>
-<script src="/scripts/Extractions.View.js"></script>
-<script src="/scripts/Extractions.Mock.js"></script>
-<script src="/scripts/Extractions.Data.js"></script>
+  <script src="/scripts/Extractions.js"></script>
+  <script src="/scripts/Extractions.View.js"></script>
+  <script src="/scripts/Extractions.Mock.js"></script>
+  <script src="/scripts/Extractions.Data.js"></script>
 </body>
+
 </html>
 
 <!-- 
@@ -383,7 +451,7 @@
             font-family: Arial, sans-serif;
         }
 
-        .card-container {
+        .card-container-custom {
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -392,7 +460,7 @@
             box-sizing: border-box;
         }
 
-        .card {
+        .card-custom {
             display: flex;
             align-items: center;
             border: 1px solid #ccc;
@@ -401,23 +469,23 @@
             margin-bottom: 20px;
         }
 
-        .image {
+        .image-custom {
             flex: 1;
             overflow: hidden;
         }
 
-        .image img {
+        .image img-custom {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        .content {
+        .content-custom {
             flex: 2;
             padding: 20px;
         }
 
-        .tags {
+        .tags-custom {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -427,7 +495,7 @@
             background-color: #f0f0f0;
         }
 
-        .tag {
+        .tag-custom {
             background-color: #007bff;
             color: #fff;
             border-radius: 20px;
@@ -438,8 +506,8 @@
     </style>
 </head>
 <body>
-    <div class="card-container">
-        <div class="card">
+    <div class="card-container-custom">
+        <div class="card-custom">
             <div class="image">
                 <img src="path/to/image.jpg" alt="Image">
             </div>

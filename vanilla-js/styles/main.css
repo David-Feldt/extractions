@@ -532,3 +532,62 @@
  aside textarea:focus {
    outline: none;
  }
+
+ .card-container-custom {
+  /* display: flex; */
+  display: contents;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100vw;
+  /* padding: 20px; */
+  box-sizing: border-box;
+}
+
+.card-custom {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.image-custom {
+  flex: 1;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  height:176px;
+}
+
+.image img-custom {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content-custom {
+  flex: 2;
+  padding: 20px;
+}
+
+.tags-custom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.tag-custom {
+  background-color: #ad8d51;
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+  text-align: center;
+}

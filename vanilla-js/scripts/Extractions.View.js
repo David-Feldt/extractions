@@ -73,8 +73,8 @@ Extractions.prototype.viewList = function(filters, filter_description) {
       };
   
       var el = that.renderTemplate('shop-card', data);
-      el.querySelector('.rating').append(that.renderRating(data.avgRating));
-      el.querySelector('.price').append(that.renderPrice(data.price));
+      // el.querySelector('.rating').append(that.renderRating(data.avgRating));
+      // el.querySelector('.price').append(that.renderPrice(data.price));
       // Setting the id allows to locating the individual shop card
       el.querySelector('.location-card').id = 'doc-' + doc.id;
   
@@ -331,36 +331,37 @@ Extractions.prototype.viewShop = function(id) {
       };
 
       sectionHeaderEl = that.renderTemplate('shop-header', data);
-      sectionHeaderEl
-        .querySelector('.rating')
-        .append(that.renderRating(data.avgRating));
+      // sectionHeaderEl
+      //   .querySelector('.rating')
+      //   .append(that.renderRating(data.avgRating));
 
-      sectionHeaderEl
-        .querySelector('.price')
-        .append(that.renderPrice(data.price));
+      // sectionHeaderEl
+      //   .querySelector('.price')
+      //   .append(that.renderPrice(data.price));
       return doc.ref.collection('ratings').orderBy('timestamp', 'desc').get();
     })
     .then(function(ratings) {
       var mainEl;
 
-      if (ratings.size) {
-        mainEl = that.renderTemplate('main');
+      // if (ratings.size) {
+      //   mainEl = that.renderTemplate('main');
 
-        ratings.forEach(function(rating) {
-          var data = rating.data();
-          var el = that.renderTemplate('review-card', data);
-          el.querySelector('.rating').append(that.renderRating(data.rating));
-          mainEl.querySelector('#cards').append(el);
-        });
-      } else {
-        mainEl = that.renderTemplate('no-ratings', {
-          add_mock_data: function() {
-            that.addMockRatings(id).then(function() {
-              that.rerender();
-            });
-          }
-        });
-      }
+      //   ratings.forEach(function(rating) {
+      //     var data = rating.data();
+      //     var el = that.renderTemplate('review-card', data);
+      //     el.querySelector('.rating').append(that.renderRating(data.rating));
+      //     mainEl.querySelector('#cards').append(el);
+      //   });
+      // } else {
+      //   mainEl = that.renderTemplate('no-ratings', {
+      //     add_mock_data: function() {
+      //       that.addMockRatings(id).then(function() {
+      //         that.rerender();
+      //       });
+      //     }
+      //   });
+      // }
+      mainEl = that.renderTemplate('shop-body');
 
       var headerEl = that.renderTemplate('header-base', {
         hasSectionHeader: true
@@ -511,6 +512,15 @@ Extractions.prototype.renderRating = function(rating) {
       star = this.renderTemplate('star-border-icon', {});
     }
     el.append(star);
+  }
+  return el;
+};
+
+Extractions.prototype.renderTags = function(tags) {
+  var el = this.renderTemplate('tags', {});
+  for (var tag in tags) {
+    //el.append(tag);
+    el.append(this.renderTemplate('tag', { tag: tag }));
   }
   return el;
 };
