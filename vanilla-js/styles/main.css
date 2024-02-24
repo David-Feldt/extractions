@@ -591,3 +591,38 @@
   margin-bottom: 5px;
   text-align: center;
 }
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row div {
+  flex: 1; /* Each section will take up equal space */
+  margin: 10px; /* Add some space between the sections */
+}
+
+/* #gallery div {
+  width: 30%;
+  margin: 10px;
+  display: flex;
+} */
+
+.content-area {
+  display: grid;
+  grid-template-columns: 4fr 1fr; /* Two columns, with the blog taking up twice the space of the details */
+  gap: 5px; /* Space between grid items */
+}
+
+#blog {
+  grid-column: 1 / 2; /* Blog takes up the first column */
+}
+
+#details {
+  grid-column: 2 / 3; /* Details take up the second column */
+  align-self: start; /* Aligns the details section to the top of its grid area */
+}
+
+.container {
+  width: 80%; /* Adjust this to suit your needs */
+  margin: 0 auto; /* This centers the div */
+}

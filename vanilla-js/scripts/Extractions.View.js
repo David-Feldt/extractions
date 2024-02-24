@@ -17,6 +17,7 @@
  */
 'use strict';
 // Create a reference with an initial file path and name
+//require('dotenv').config(); pain in the ass I don think scripts are modules
 
 Extractions.prototype.initTemplates = function() {
   this.templates = {};
@@ -313,6 +314,7 @@ Extractions.prototype.updateQuery = function(filters) {
 
 Extractions.prototype.viewShop = function(id) {
   var sectionHeaderEl;
+  var mainEl;
 
   var that = this;
   return this.getShop(id)
@@ -331,6 +333,24 @@ Extractions.prototype.viewShop = function(id) {
       };
 
       sectionHeaderEl = that.renderTemplate('shop-header', data);
+      mainEl = that.renderTemplate('shop-body',data);
+      console.log("this is data", data);
+      console.log("UDAPTING");
+      var placeId = doc.placeId;
+      mainEl.querySelector('.coffee_price').append(that.renderPrice(data.coffee_price));
+      mainEl.querySelector('.food_price').append(that.renderPrice(data.food_price));
+      mainEl.querySelector('.quality').append(that.renderQuality(data.quality));
+      mainEl.querySelector('.desserts').append(that.renderQuality(data.desserts));
+      mainEl.querySelector('.meals').append(that.renderQuality(data.meals));
+      mainEl.querySelector('.size').append(that.renderQuality(data.size));
+      mainEl.querySelector('.unique').append(that.renderUnique(data.unique));
+      mainEl.querySelector('.study').append(that.renderQuality(data.study));
+
+      // TODO: INVOKE CLOUD FUNCTION TO GET PLACE DETAILS
+
+
+      //
+
       // sectionHeaderEl
       //   .querySelector('.rating')
       //   .append(that.renderRating(data.avgRating));
@@ -341,7 +361,6 @@ Extractions.prototype.viewShop = function(id) {
       return doc.ref.collection('ratings').orderBy('timestamp', 'desc').get();
     })
     .then(function(ratings) {
-      var mainEl;
 
       // if (ratings.size) {
       //   mainEl = that.renderTemplate('main');
@@ -361,8 +380,6 @@ Extractions.prototype.viewShop = function(id) {
       //     }
       //   });
       // }
-      mainEl = that.renderTemplate('shop-body');
-
       var headerEl = that.renderTemplate('header-base', {
         hasSectionHeader: true
       });
@@ -457,20 +474,16 @@ Extractions.prototype.render = function(el, data) {
       console.log(attr);
       console.log(field);
       var value = that.getDeepItem(data, field);
-      console.log("this is value", value)
       const pathReference = firebase.storage().ref(value);
-      console.log("this is patth reference", pathReference);
       if (attr.toLowerCase() === 'backgroundimage') {
         pathReference.getDownloadURL().then(function(url) {
           value = 'url(' + url + ')';
-          console.log("this is value", value)
           tel.style[attr] = value;
         }).catch(function(error) {
           console.log(error);
         });
       }
       tel.style[attr] = value;
-      console.log("this is tel", value)
     }
   };
 
@@ -532,6 +545,32 @@ Extractions.prototype.renderPrice = function(price) {
   }
   return el;
 };
+
+Extractions.prototype.renderQuality = function(quality) {
+  const ratings = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+  var el = this.renderTemplate('quality', {});
+  if (quality < 0) {
+    el.append('N/A');
+  } else{
+    el.append(ratings[quality]);
+  }
+  return el;
+};
+
+Extractions.prototype.renderSize = function(size) {
+  const sizes = ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large'];
+  var el = this.renderTemplate('size', {});
+  el.append(sizes[size]);
+  return el;
+};
+
+Extractions.prototype.renderUnique = function(unique) {
+  const categories = ['Boring', 'Average', 'Distinct','Noteworthy','Phenomenal'];
+  var el = this.renderTemplate('unique', {});
+  el.append(categories[unique]);
+  return el;
+};
+
 
 Extractions.prototype.replaceElement = function(parent, content) {
   parent.innerHTML = '';

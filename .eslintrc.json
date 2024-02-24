@@ -35,9 +35,13 @@
         "Navigo": true,
         "mdc": true,
         "importScripts": true,
+        "dotenv":true,
         "Extractions": true,
         "firebase": true,
         "Promise": true,
         "@google-cloud/storage": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
     }
 }

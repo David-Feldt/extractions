@@ -154,10 +154,12 @@
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <a href="/" data-navigo class="material-icons" id="close">close</a>
             </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 info">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 info">
               <div class="max_width_600">
                 <h1 data-fir-content="name"></h1>
-                <!-- <span class="price"></span> -->
+                  <!-- <div class="tag-custom">Tag 1</div>
+                  <div class="tag-custom">Tag 2</div>
+                  <div class="tag-custom">Tag 3</div> -->                <!-- <span class="price"></span> -->
                 <!-- <div class="rating"></div> -->
                 <!-- <div class="details"> -->
                   <!-- <span class="rating"></span> -->
@@ -170,20 +172,88 @@
                 </button> -->
               </div>
             </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 info">
+              <div class="tag-custom" data-fir-foreach="Tags" data-fir-content="~"></div>
+            </div>
           </div>
         </div>
       </header>
     </div>
 
     <div hidden class="template" id="shop-body">
-      <p>
-        This is where I put all written review :D
-      </p>
+      <div class="container">
+        <div class="row">
+          <div id="coffee">
+              <h2>Coffee</h2>
+              <span style="display: inline">Rating: <span data-fir-content="coffee rating"></span>/10</span>
+              <p>Price: <span class="coffee_price"></span></p>
+              <p>Quality: <span class="quality"></span></p>
+          </div>
+      
+          <div id="food">
+              <h2>Food</h2>
+              <span style="display: inline">Rating: <span data-fir-content="food rating"></span>/10</span>
+              <p>Price: <span class="food_price"></span></p>
+              <div>
+                <p>Meal Rating: <span class="meals"></span></p>
+                <p>Dessert Rating: <span class="desserts"></span></p>
+              </div>
+            </div>
+      
+          <div id="vibe">
+              <h2>Atmosphere</h2>
+              <span style="display: inline">Rating: <span data-fir-content="vibe rating"></span>/10</span>
+              <p>Size: <span class="size"></span></p>
+              <p>Uniqueness: <span class="unique"></span></p>
+              <p>Study Atmosphere: <span class="study"></span></p>
+
+          </div>
+      </div>
+      
+      <div id="gallery">
+              <h2>Photo Gallery</h2>
+              <div class="row">
+              <div class="image-custom" data-fir-style="backgroundImage:photo"></div>
+              <div class="image-custom" data-fir-style="backgroundImage:photo"></div>
+              <div class="image-custom" data-fir-style="backgroundImage:photo"></div>
+              </div>
+    
+      </div>
+      
+      <div class="content-area">
+          <div id="blog">
+              <h2>Our Review</h2>
+              <div class="article">
+                  <span style="display: inline">Created: <span data-fir-content="date"></span></span>
+              </div>
+              <p data-fir-content="review"></p>
+          </div>
+      
+          <div id="details">
+              <h2>Details</h2>
+              <p>Phone: <span data-fir-content="phone"></span></p>
+              <p>Address: <span data-fir-content="address"></span></p>
+              <!-- <span>Hours: <span data-fir-content="hours"></span></span> -->
+              <span>Website: <span data-fir-content="url"></span></span>
+              <p>Hours: <div class="" data-fir-foreach="hours" data-fir-content="~"></div></p>
+
+              <!-- <span style="display: inline">Phone: <span data-fir-content="phone"></span></span>
+              <span style="display: inline">Address: <span data-fir-content="address"></span></span>
+              <span style="display: inline">Hours: <span data-fir-content="hours"></span></span>
+              <div class="tag-custom" data-fir-foreach="hour" data-fir-content="~"></div>
+              <span style="display: inline">Website: <span data-fir-content="url"></span></span> -->
+          </div>
+      </div>
+    </div>
     </div>
 
     <div hidden class="template" id="rating"></div>
     <div hidden class="template tags-custom" id="tag"></div>
     <span hidden class="template" id="price"></span>
+    <span hidden class="template" id="quality"></span>
+    <span hidden class="template" id="size"></span>
+    <span hidden class="template" id="unique"></span>
+
 
     <div hidden class="template mdc-layout-grid__cell--span-12" id="review-card">
       <div class="review max_width_600">
