@@ -16,8 +16,6 @@
  * limitations under the License.
  */
 'use strict';
-console.log('Extractions.js loaded');
-
 /**
  * Initializes the Extractions app.
  */
@@ -50,13 +48,22 @@ function Extractions() {
   that.initAppCheck();
 
   firebase.auth().signInAnonymously().then(function() {
+    console.log("Before template");
     that.initTemplates();
+    console.log("Before router");
+    that.initFilterDialog();
     that.initRouter();
+    console.log("Before revierw dialog");
     that.initReviewDialog();
+    console.log("Before filter dialog");
     that.initFilterDialog();
   }).catch(function(err) {
+    console.log("This is the error")
     console.log(err);
+    console.log("mom saw it fail");
   });
+
+  console.log("Extractions app initialized");
 }
 
 /**
@@ -64,7 +71,7 @@ function Extractions() {
  */
 Extractions.prototype.initRouter = function() {
   this.router = new Navigo();
-
+  console.log("In init router")
   var that = this;
   this.router
     .on({
@@ -85,7 +92,7 @@ Extractions.prototype.initRouter = function() {
       }
     })
     .resolve();
-
+  console.log("Router initialized");
   firebase
     .firestore()
     .collection('shops')

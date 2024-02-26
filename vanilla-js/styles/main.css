@@ -626,3 +626,8 @@
   width: 80%; /* Adjust this to suit your needs */
   margin: 0 auto; /* This centers the div */
 }
+.page-header{
+  color: white; /* Text color */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    position: absolute;
+}

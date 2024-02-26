@@ -34,8 +34,10 @@ Extractions.prototype.viewHome = function() {
 
 Extractions.prototype.viewList = function(filters, filter_description) {
   if (!filter_description) {
-    filter_description = 'any type of food with any price in any city.';
+    filter_description = 'find the coffee shop for your needs!';
   }
+  
+  console.log("viewlist filters", filters);
 
   var mainEl = this.renderTemplate('main-adjusted');
   var headerEl = this.renderTemplate('header-base', {
@@ -51,12 +53,13 @@ Extractions.prototype.viewList = function(filters, filter_description) {
 
   this.replaceElement(document.querySelector('.header'), headerEl);
   this.replaceElement(document.querySelector('main'), mainEl);
-
+  // this.dialogs.filter = new mdc.dialog.MDCDialog(document.querySelector('#dialog-filter-all'));
+  console.log("dialogs filter: ", this.dialogs.filter);
   var that = this;
   headerEl.querySelector('#show-filters').addEventListener('click', function() {
     that.dialogs.filter.show();
   });
-
+  console.log("View list before renderer");
   var renderer = {
     remove: function(doc) {
       var locationCardToDelete = mainEl.querySelector('#doc-' + doc.id);
@@ -120,14 +123,20 @@ Extractions.prototype.viewList = function(filters, filter_description) {
       price: filters.price || 'Any',
       sort: filters.sort
     }, renderer);
+    console.log("Get filtered shops");
   } else {
     this.getAllShops(renderer);
+    console.log("Get all shops");
   }
 
+  console.log("Vew list before mdctoolbar");
+  console.log(document.querySelector('.mdc-toolbar'));
   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+  console.log("Failig?");
   toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
-
+  console.log("View list done - before mdc auto");
   mdc.autoInit();
+  console.log("View list done");
 };
 
 Extractions.prototype.viewSetup = function() {
@@ -213,12 +222,12 @@ Extractions.prototype.initReviewDialog = function() {
 Extractions.prototype.initFilterDialog = function() {
   // TODO: Reset filter dialog to init state on close.
   this.dialogs.filter = new mdc.dialog.MDCDialog(document.querySelector('#dialog-filter-all'));
-
+  console.log("Mom solved the problem");
+  console.log("dialogs filter: ", this.dialogs.filter);
   var that = this;
   this.dialogs.filter.listen('MDCDialog:accept', function() {
     that.updateQuery(that.filters);
   });
-
   var dialog = document.querySelector('aside');
   var pages = dialog.querySelectorAll('.page');
 
@@ -283,6 +292,10 @@ Extractions.prototype.initFilterDialog = function() {
 };
 
 Extractions.prototype.updateQuery = function(filters) {
+  
+  filters.sort = "";
+  console.log("mom find filters: ", filters);
+  
   var query_description = '';
 
   if (filters.category !== '') {
@@ -308,8 +321,9 @@ Extractions.prototype.updateQuery = function(filters) {
   } else if (filters.sort === 'Reviews') {
     query_description += ' sorted by # of reviews';
   }
-
+  console.log("updateQuer - before view list")
   this.viewList(filters, query_description);
+  console.log("updateQuer - after view list")
 };
 
 Extractions.prototype.viewShop = function(id) {
@@ -471,8 +485,6 @@ Extractions.prototype.render = function(el, data) {
       var chunks = tel.getAttribute('data-fir-style').split(':');
       var attr = chunks[0];
       var field = chunks[1];
-      console.log(attr);
-      console.log(field);
       var value = that.getDeepItem(data, field);
       const pathReference = firebase.storage().ref(value);
       if (attr.toLowerCase() === 'backgroundimage') {
@@ -484,7 +496,36 @@ Extractions.prototype.render = function(el, data) {
         });
       }
       tel.style[attr] = value;
-    }
+    },
+    'data-fir-foreach-style': function(tel) {
+      var field = tel.getAttribute('data-fir-foreach-style');
+      var values = that.getDeepItem(data, field);
+
+      values.forEach(function(value, index) {
+        var cloneTel = tel.cloneNode(true);
+        tel.parentNode.append(cloneTel);
+
+        Object.keys(modifiers).forEach(function(selector) {
+          var children = Array.prototype.slice.call(
+            cloneTel.querySelectorAll('[' + selector + ']')
+          );
+          children.push(cloneTel);
+          children.forEach(function(childEl) {
+            var currentVal = childEl.getAttribute(selector);
+
+            if (!currentVal) {
+              return;
+            }
+            childEl.setAttribute(
+              selector,
+              currentVal.replace('~', field + '/' + index)
+            );
+          });
+        });
+      });
+
+      tel.parentNode.removeChild(tel);
+    },
   };
 
   var preModifiers = ['data-fir-foreach'];
