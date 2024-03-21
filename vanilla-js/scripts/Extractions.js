@@ -36,10 +36,15 @@ function Extractions() {
   }
 
   this.filters = {
-    city: '',
+    // city: '',
     price: '',
-    category: '',
-    sort: 'Rating'
+    // category: '',
+    sort: 'Rating',
+    overall: 'Best',
+    study: '',
+    food: '',
+    vibe: '',
+    coffee: '',
   };
 
   this.dialogs = {};
@@ -48,19 +53,12 @@ function Extractions() {
   that.initAppCheck();
 
   firebase.auth().signInAnonymously().then(function() {
-    console.log("Before template");
     that.initTemplates();
-    console.log("Before router");
     that.initFilterDialog();
     that.initRouter();
-    console.log("Before revierw dialog");
     that.initReviewDialog();
-    console.log("Before filter dialog");
-    that.initFilterDialog();
   }).catch(function(err) {
-    console.log("This is the error")
     console.log(err);
-    console.log("mom saw it fail");
   });
 
   console.log("Extractions app initialized");
@@ -71,7 +69,6 @@ function Extractions() {
  */
 Extractions.prototype.initRouter = function() {
   this.router = new Navigo();
-  console.log("In init router")
   var that = this;
   this.router
     .on({
@@ -92,7 +89,6 @@ Extractions.prototype.initRouter = function() {
       }
     })
     .resolve();
-  console.log("Router initialized");
   firebase
     .firestore()
     .collection('shops')
@@ -221,4 +217,16 @@ Extractions.prototype.data = {
 
 window.onload = function() {
   window.app = new Extractions();
+  var minWidth = 600; // Minimum width in pixels
+  if (window.innerWidth < minWidth) {
+      // If the screen width is less than 600px
+      document.getElementById('mainContent').style.display = 'none'; // Hide the main content
+      document.getElementById('mobileMessage').style.display = 'flex'; // Show the mobile message
+      console.log("Mobile");
+  } else {
+      // If the screen width is 600px or more
+      document.getElementById('mainContent').style.display = 'block'; // Show the main content
+      document.getElementById('mobileMessage').style.display = 'none'; // Hide the mobile 
+      console.log("Desktop");
+  }
 };

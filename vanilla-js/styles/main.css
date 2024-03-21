@@ -17,7 +17,7 @@
  */ 
  html,
  body {
-   font-family: 'Roboto', 'Helvetica', sans-serif;
+   font-family: 'Noto Serif', 'Roboto', 'Helvetica', sans-serif;
    margin: 0px;
    padding: 0px;
    background-color: #eee;
@@ -552,6 +552,7 @@
   margin-bottom: 20px;
   margin: 20px;
   padding: 20px;
+  background-color: #fff;
 }
 
 .image-custom {
@@ -580,7 +581,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
 }
 
 .tag-custom {
@@ -599,6 +600,10 @@
 .row div {
   flex: 1; /* Each section will take up equal space */
   margin: 10px; /* Add some space between the sections */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* #gallery div {
@@ -615,11 +620,21 @@
 
 #blog {
   grid-column: 1 / 2; /* Blog takes up the first column */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 10px;
 }
 
 #details {
   grid-column: 2 / 3; /* Details take up the second column */
   align-self: start; /* Aligns the details section to the top of its grid area */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin:10px; 
 }
 
 .container {
@@ -630,4 +645,39 @@
   color: white; /* Text color */
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     position: absolute;
+}
+
+.image-container {
+  width: 100%; /* Adjust container width as needed */
+  height: 100px; /* Adjust container height to control the vertical cropping */
+  overflow: hidden; /* Hide parts of the image that overflow the container */
+  /* display: flex; Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+/* The image itself */
+.image-container img {
+  width: auto; /* Keep image's original width */
+  height: 100%; /* Make the image fill the container height */
+  object-fit: cover; /* Cover the container with the image without distorting aspect ratio */
+  object-position: center; /* Center the image within the container */
+  align-self: center; /* Center the image vertically */
+  align-items: center; /* Center the image vertically */
+
+}
+
+#mobileMessage{
+  position: fixed; /* Use fixed or absolute positioning */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Viewport width */
+  height: 100vh; /* Viewport height */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;
+  text-align: center; /* Ensures the text inside the div is centered */
+}
+
+.img-dark{
+  width:100%;
 }

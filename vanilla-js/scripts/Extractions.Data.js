@@ -27,20 +27,65 @@ Extractions.prototype.getAllShops = function(renderer) {
         .collection('shops')
         // .orderBy('avgRating', 'desc')
         .limit(50);
-    this.getDocumentsInQuery(query, renderer);
+    this.getDocumentsInQuery(query, renderer,{overall: "Best"});
 };
 
-Extractions.prototype.getDocumentsInQuery = function(query, renderer) {
+Extractions.prototype.getDocumentsInQuery = function(query, renderer,filters) {
     query.onSnapshot(function(snapshot) {
         if (!snapshot.size) {return renderer.empty();} // Display "There are no shops".
-
-        snapshot.docChanges().forEach(function(change) {
-            if (change.type === 'removed') {
-                renderer.remove(change.doc);
-            } else {
-                renderer.display(change.doc);
+        let newSnapshot = snapshot.docs.map(function(doc) {
+            const data = doc.data();
+            let score = 0;
+            if(filters.study == "Best"){
+                score += data.study;
             }
+            if(filters.study == "Worst"){
+                score -= data.study;
+            }
+            if(filters.vibe == "Best"){
+                score += data['vibe rating'];
+            }
+            if(filters.vibe == "Worst"){
+                score -= data['vibe rating'];
+            }
+            if(filters.food == "Best"){
+                score += data['food rating'];
+            }
+            if(filters.food == "Worst"){
+                score -= data['food rating'];
+            }
+            if(filters.overall == "Best"){
+                score += data['overall rating'];
+            }
+            if(filters.overall == "Worst"){
+                score -= data['overall rating'];
+            }
+            if (filters.coffee === 'Best') {
+                score += data['coffee rating'];
+            }
+            if(filters.coffee == "Worst"){
+                score -= 'coffee rating';
+            }
+            data.score = score;
+            return {
+                id: doc.id,
+                data: data
+            };
+        
         });
+
+        const sortedSnapshot = newSnapshot.sort((a, b) => b.score - a.score);
+
+        sortedSnapshot.forEach(function(doc) {
+            renderer.display(doc);
+        });
+        // snapshot.docChanges().forEach(function(change) {
+        //     if (change.type === 'removed') {
+        //         renderer.remove(change.doc);
+        //     } else {
+        //         renderer.display(change.doc);
+        //     }
+        // });
     });
 };
 
@@ -51,26 +96,56 @@ Extractions.prototype.getShop = function(id) {
 Extractions.prototype.getFilteredShops = function(filters, renderer) {
     var query = firebase.firestore().collection('shops');
 
-    if (filters.category !== 'Any') {
-        query = query.where('category', '==', filters.category);
-    }
+    // COMBINE ALL FILTERS INTO A SCORE CATEGORY AND SORT BY THAT
 
-    if (filters.city !== 'Any') {
-        query = query.where('city', '==', filters.city);
-    }
+    // if (filters.category !== 'Any') {
+    //     query = query.where('category', '==', filters.category);
+    // }
 
-    if (filters.price !== 'Any') {
-        query = query.where('price', '==', filters.price.length);
-    }
+    // if (filters.city !== 'Any') {
+    //     query = query.where('city', '==', filters.city);
+    // }
 
-    console.log('GET FILTERED SHOPS');
-    if (filters.sort === 'Rating') {
-        // query = query.orderBy('avgRating', 'desc');
-    } else if (filters.sort === 'Reviews') {
-        // query = query.orderBy('numRatings', 'desc');
+    // if (filters.price !== 'Any') {
+    //     query = query.where('price', '==', filters.price.length);
+    // }
+    if(filters.study == "Best"){
+        query = query.orderBy('study', 'desc');
     }
+    if(filters.study == "Worst"){
+        query = query.orderBy('study', 'asc');
+    }
+    if(filters.vibe == "Best"){
+        query = query.orderBy('vibe rating', 'desc');
+    }
+    if(filters.vibe == "Worst"){
+        query = query.orderBy('vibe rating', 'asc');
+    }
+    if(filters.food == "Best"){
+        query = query.orderBy('food rating', 'desc');
+    }
+    if(filters.food == "Worst"){
+        query = query.orderBy('food rating', 'asc');
+    }
+    if(filters.overall == "Best"){
+        query = query.orderBy('overall rating', 'desc');
+    }
+    if(filters.overall == "Worst"){
+        query = query.orderBy('overall rating', 'asc');
+    }
+    if (filters.coffee === 'Best') {
+        query = query.orderBy('coffee rating', 'desc');
+    }
+    if(filters.coffee == "Worst"){
+        query = query.orderBy('coffee rating', 'asc');
+    }
+    
+    // if (filters.sort === 'Aidan') {
+    //     query = query.orderBy('overall rating', 'desc');
+    //     console.log("SORTING BY RATING");
+    // }
 
-    this.getDocumentsInQuery(query, renderer);
+    this.getDocumentsInQuery(query, renderer,filters);
 };
 
 Extractions.prototype.addRating = function(shopID, rating) {

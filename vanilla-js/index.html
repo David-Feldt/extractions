@@ -28,12 +28,12 @@
   <link rel="manifest" href="manifest.json">
 
   <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="no">
   <meta name="application-name" content="Extractions">
   <meta name="theme-color" content="#4285F4">
 
   <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="no">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Extractions">
   <meta name="apple-mobile-web-app-status-bar-style" content="#4285F4">
@@ -51,11 +51,14 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css" type="text/css">
 </head>
 
 <body>
-  <div>
+  <div id="mainContent">
     <div class="header"></div>
 
     <main></main>
@@ -100,7 +103,7 @@
 
     <div hidden class="template" id="no-shops">
       <div id="guy-container" class="mdc-toolbar-fixed-adjust">
-        <img class="guy" src="/images/guy_fireats.png" />
+        <img class="guy" src="/images/e-fav.png" />
         <div class="text">
           This app is connected to the Firebase project "<b data-fir-content="projectId"></b>".<br />
           <br />
@@ -115,7 +118,7 @@
 
     <div hidden class="template" id="no-ratings">
       <div id="guy-container" class="mdc-toolbar-fixed-adjust">
-        <img class="guy" src="/images/guy_fireats.png" />
+        <img class="guy" src="/images/e-fav.png" />
         <div class="text">
           This coffee shop has no ratings.<br />
         </div>
@@ -128,7 +131,7 @@
 
     <div hidden class="template" id="no-results">
       <div id="guy-container" class="mdc-toolbar-fixed-adjust">
-        <img class="guy" src="/images/guy_fireats.png" />
+        <img class="guy" src="/images/e-fav.png" />
         <div class="text">
           There are no results for your those filters!
         </div>
@@ -148,8 +151,8 @@
 
     <div hidden class="template" id="shop-header">
       <header class="mdc-layout__header mdc-layout__header--transparent" data-fir-style="backgroundImage:photo">
-
-        <div class="mdc-layout-grid" style="width: 100%;">
+        <div class="container">
+        <div class="mdc-layout-grid" style="width: 80%;">
           <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <a href="/" data-navigo class="material-icons" id="close">close</a>
@@ -185,27 +188,25 @@
         <div class="row">
           <div id="coffee">
               <h2>Coffee</h2>
-              <span style="display: inline">Rating: <span data-fir-content="coffee rating"></span>/10</span>
-              <p>Price: <span class="coffee_price"></span></p>
-              <p>Quality: <span class="quality"></span></p>
+              <span style="display: inline"><b>Rating: </b><span data-fir-content="coffee rating"></span>/10</span>
+              <p><b>Price:</b> <span class="coffee_price"></span></p>
+              <p><b>Quality: </b><span class="quality"></span></p>
           </div>
       
           <div id="food">
               <h2>Food</h2>
-              <span style="display: inline">Rating: <span data-fir-content="food rating"></span>/10</span>
-              <p>Price: <span class="food_price"></span></p>
-              <div>
-                <p>Meal Rating: <span class="meals"></span></p>
-                <p>Dessert Rating: <span class="desserts"></span></p>
-              </div>
+              <span style="display: inline"><b>Rating: </b><span data-fir-content="food rating"></span>/10</span>
+              <p><b>Price: </b><span class="food_price"></span></p>
+                <p><b>Meal Rating:</b> <span class="meals"></span></p>
+                <p><b>Dessert Rating: </b><span class="desserts"></span></p>
             </div>
       
           <div id="vibe">
               <h2>Atmosphere</h2>
-              <span style="display: inline">Rating: <span data-fir-content="vibe rating"></span>/10</span>
-              <p>Size: <span class="size"></span></p>
-              <p>Uniqueness: <span class="unique"></span></p>
-              <p>Study Atmosphere: <span class="study"></span></p>
+              <span style="display: inline"><b>Rating: </b><span data-fir-content="vibe rating"></span>/10</span>
+              <p><b>Size: </b><span class="size"></span></p>
+              <p><b>Uniqueness: </b> <span class="unique"></span></p>
+              <p><b>Study Atmosphere: </b><span class="study"></span></p>
 
           </div>
       </div>
@@ -220,18 +221,18 @@
           <div id="blog">
               <h2>Our Review</h2>
               <div class="article">
-                  <span style="display: inline">Created: <span data-fir-content="date"></span></span>
+                  <span style="display: inline"><i>Created: <span data-fir-content="date"></span></i></span>
               </div>
               <p data-fir-content="review"></p>
           </div>
       
           <div id="details">
               <h2>Details</h2>
-              <p>Phone: <span data-fir-content="phone"></span></p>
-              <p>Address: <span data-fir-content="address"></span></p>
+              <p><b>Phone: </b><span data-fir-content="phone"></span></p>
+              <p><b>Address: </b><span data-fir-content="address"></span></p>
               <!-- <span>Hours: <span data-fir-content="hours"></span></span> -->
-              <span>Website: <span data-fir-content="url"></span></span>
-              <p>Hours: <div class="" data-fir-foreach="hours" data-fir-content="~"></div></p>
+              <span><b>Instagram:</b> <span data-fir-content="url"></span></span>
+              <p><b>Hours: </b><div class="" data-fir-foreach="hours" data-fir-content="~"></div></p>
 
               <!-- <span style="display: inline">Phone: <span data-fir-content="phone"></span></span>
               <span style="display: inline">Address: <span data-fir-content="address"></span></span>
@@ -337,7 +338,7 @@
   </ul>
 
   <ul hidden class="template mdc-list" id="all-filters-list">
-    <li id="show-page-category" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+    <!-- <li id="show-page-category" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
       <i class="material-icons">fastfood</i>
       <span data-fir-if-not="category">Any Category</span>
       <b data-fir-content="category"></b>
@@ -346,16 +347,41 @@
       <i class="material-icons">location_on</i>
       <span data-fir-if-not="city">Any Location</span>
       <b data-fir-content="city"></b>
-    </li>
-    <li id="show-page-price" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+    </li> -->
+    <!-- <li id="show-page-price" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
       <i class="material-icons">monetization_on</i>
       <span data-fir-if-not="price">Any Price</span>
       <b data-fir-content="price"></b>
+    </li> -->
+    <li id="show-page-overall" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+      <i class="material-icons">trending_up</i>
+      <span data-fir-if-not="overall">Overall</span>
+      <b data-fir-content="overall"></b>
     </li>
-    <li id="show-page-sort" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+    <li id="show-page-coffee" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+      <i class="material-icons">coffee</i>
+      <span data-fir-if-not="coffee">Coffee</span>
+      <b data-fir-content="coffee"></b>
+    </li>
+    <li id="show-page-food" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+      <i class="material-icons">restaurant</i>
+      <span data-fir-if-not="food">Food</span>
+      <b data-fir-content="food"></b>
+    </li>
+    <li id="show-page-vibe" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+      <i class="material-icons">home</i>
+      <span data-fir-if-not="vibe">Atmosphere</span>
+      <b data-fir-content="vibe"></b>
+    </li>
+    <li id="show-page-study" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+      <i class="material-icons">school</i>
+      <span data-fir-if-not="study">Study</span>
+      <b data-fir-content="study"></b>
+    </li>
+    <!-- <li id="show-page-sort" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
       <i class="material-icons">sort</i>
       <b data-fir-content="sort"></b>
-    </li>
+    </li> -->
   </ul>
 
   <aside id="dialog-filter-all" class="mdc-dialog">
@@ -364,7 +390,7 @@
         <header class="mdc-dialog__header">
           <i class="material-icons">filter_list</i>
           <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
-            Filter
+            Filter & Sort
           </h2>
         </header>
         <section class="mdc-dialog__body mdc-dialog__body--scrollable">
@@ -433,6 +459,126 @@
           <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
         </footer>
       </div>
+      <div class="page" id="page-overall">
+        <header class="mdc-dialog__header">
+          <i class="material-icons">trending_up</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Overall Rating
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Best
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Worst
+            </li>
+          </ul>
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
+        </footer>
+      </div>
+      <div class="page" id="page-coffee">
+        <header class="mdc-dialog__header">
+          <i class="material-icons">coffee</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Coffee Rating
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Best
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Worst
+            </li>
+          </ul>
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
+        </footer>
+      </div>
+      <div class="page" id="page-food">
+        <header class="mdc-dialog__header">
+          <i class="material-icons">restaurant</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Food Rating
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Best
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Worst
+            </li>
+          </ul>
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
+        </footer>
+      </div>
+      <div class="page" id="page-vibe">
+        <header class="mdc-dialog__header">
+          <i class="material-icons">home</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Atomosphere Rating
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Best
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Worst
+            </li>
+          </ul>
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
+        </footer>
+      </div>
+      <div class="page" id="page-study">
+        <header class="mdc-dialog__header">
+          <i class="material-icons">school</i>
+          <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
+            Study
+          </h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+          <ul class="mdc-list">
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Any
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Best
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Worst
+            </li>
+          </ul>
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button back">Back</button>
+        </footer>
+      </div>
       <div class="page" id="page-sort">
         <header class="mdc-dialog__header">
           <i class="material-icons">sort</i>
@@ -447,6 +593,9 @@
             </li>
             <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
               Reviews
+            </li>
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+              Aidan
             </li>
           </ul>
         </section>
@@ -484,6 +633,14 @@
     </div>
     <div class="mdc-dialog__backdrop"></div>
   </aside>
+  </div>
+  <div id="mobileMessage">
+    <div>
+      <h1>
+        Unavailible on mobile :(
+      </h1>
+      <img class ="img-dark" src="/images/coffee-memes.webp" />
+    </div>
   </div>
 
   <script src="/__/firebase/9.22.1/firebase-app-compat.js"></script>

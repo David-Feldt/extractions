@@ -37,7 +37,6 @@ Extractions.prototype.viewList = function(filters, filter_description) {
     filter_description = 'find the coffee shop for your needs!';
   }
   
-  console.log("viewlist filters", filters);
 
   var mainEl = this.renderTemplate('main-adjusted');
   var headerEl = this.renderTemplate('header-base', {
@@ -54,12 +53,10 @@ Extractions.prototype.viewList = function(filters, filter_description) {
   this.replaceElement(document.querySelector('.header'), headerEl);
   this.replaceElement(document.querySelector('main'), mainEl);
   // this.dialogs.filter = new mdc.dialog.MDCDialog(document.querySelector('#dialog-filter-all'));
-  console.log("dialogs filter: ", this.dialogs.filter);
   var that = this;
   headerEl.querySelector('#show-filters').addEventListener('click', function() {
     that.dialogs.filter.show();
   });
-  console.log("View list before renderer");
   var renderer = {
     remove: function(doc) {
       var locationCardToDelete = mainEl.querySelector('#doc-' + doc.id);
@@ -70,7 +67,7 @@ Extractions.prototype.viewList = function(filters, filter_description) {
       return;
     },
     display: function(doc) {
-      var data = doc.data();
+      var data = doc.data;
       data['.id'] = doc.id;
       data['go_to_shop'] = function() {
         that.router.navigate('/shops/' + doc.id);
@@ -96,7 +93,6 @@ Extractions.prototype.viewList = function(filters, filter_description) {
       var headerEl = that.renderTemplate('header-base', {
         hasSectionHeader: true
       });
-      console.log('inside empty');
       var noResultsEl = that.renderTemplate('no-results');
 
       that.replaceElement(
@@ -116,27 +112,21 @@ Extractions.prototype.viewList = function(filters, filter_description) {
     }
   };
 
-  if (filters.city || filters.category || filters.price || filters.sort !== 'Rating' ) {
+  if (filters.overall || filters.coffee || filters.food || filters.study || filters.vibe ) {
     this.getFilteredShops({
-      city: filters.city || 'Any',
-      category: filters.category || 'Any',
-      price: filters.price || 'Any',
-      sort: filters.sort
+      coffee: filters.coffee || 'Any',
+      food: filters.food || 'Any',
+      vibe: filters.vibe || 'Any',
+      overall: filters.overall || 'Any',
+      study: filters.study || 'Any'
     }, renderer);
-    console.log("Get filtered shops");
   } else {
     this.getAllShops(renderer);
-    console.log("Get all shops");
   }
 
-  console.log("Vew list before mdctoolbar");
-  console.log(document.querySelector('.mdc-toolbar'));
   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
-  console.log("Failig?");
   toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
-  console.log("View list done - before mdc auto");
   mdc.autoInit();
-  console.log("View list done");
 };
 
 Extractions.prototype.viewSetup = function() {
@@ -222,8 +212,6 @@ Extractions.prototype.initReviewDialog = function() {
 Extractions.prototype.initFilterDialog = function() {
   // TODO: Reset filter dialog to init state on close.
   this.dialogs.filter = new mdc.dialog.MDCDialog(document.querySelector('#dialog-filter-all'));
-  console.log("Mom solved the problem");
-  console.log("dialogs filter: ", this.dialogs.filter);
   var that = this;
   this.dialogs.filter.listen('MDCDialog:accept', function() {
     that.updateQuery(that.filters);
@@ -293,37 +281,11 @@ Extractions.prototype.initFilterDialog = function() {
 
 Extractions.prototype.updateQuery = function(filters) {
   
-  filters.sort = "";
-  console.log("mom find filters: ", filters);
   
-  var query_description = '';
+  var query_description = 'Sort by coffee, food, atmosphere, overall, and study';
 
-  if (filters.category !== '') {
-    query_description += filters.category + ' places';
-  } else {
-    query_description += 'any shop';
-  }
 
-  if (filters.city !== '') {
-    query_description += ' in ' + filters.city;
-  } else {
-    query_description += ' located anywhere';
-  }
-
-  if (filters.price !== '') {
-    query_description += ' with a price of ' + filters.price;
-  } else {
-    query_description += ' with any price';
-  }
-
-  if (filters.sort === 'Rating') {
-    query_description += ' sorted by rating';
-  } else if (filters.sort === 'Reviews') {
-    query_description += ' sorted by # of reviews';
-  }
-  console.log("updateQuer - before view list")
   this.viewList(filters, query_description);
-  console.log("updateQuer - after view list")
 };
 
 Extractions.prototype.viewShop = function(id) {
@@ -348,8 +310,6 @@ Extractions.prototype.viewShop = function(id) {
 
       sectionHeaderEl = that.renderTemplate('shop-header', data);
       mainEl = that.renderTemplate('shop-body',data);
-      console.log("this is data", data);
-      console.log("UDAPTING");
       var placeId = doc.placeId;
       mainEl.querySelector('.coffee_price').append(that.renderPrice(data.coffee_price));
       mainEl.querySelector('.food_price').append(that.renderPrice(data.food_price));
